@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login AWS</title>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"
+    /> -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+    />
+    <link rel="stylesheet" href="/static/home.css" />
+
+    <!--
+      <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='./home.css') }}"
+    />
+    -->
+  </head>
+  <body class="gradient-custom-2 ">
+    <!-- partial:index.partial.html -->
+
+      <div class="screen-1 ">
+
+          <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+              <div class="col-xl-10">
+                <div class="card rounded-3 text-black">
+                  <div class="row g-0">
+                    <div class="col-lg-6 d-flex align-items-center ">
+                      <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                        <h4 class="mb-4">
+                          <div class="font-size-1">
+                           Đồ án cuối kỳ môn Điện toán đám mây
+                          </div>
+                        </h4>
+                        <p class="small mb-0 ">
+                          <div class="font-size-2">
+                            - Đề tài: Tìm hiểu Amazon Textract và viết ứng dụng minh họa <br>
+                          </div>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        <form
+          method="POST"
+          ,
+          action="/login"
+          ,
+          enctype="multipart/form-data"
+        >
+          <div class="form-outline mb-4">
+            <label for="text">AWS Access Key ID</label>
+            <div class="sec-2">
+              <ion-icon name="lock-closed-outline"></ion-icon>
+              <input type="text" name="aws_id" />
+            </div>
+          </div>
+          <div class="form-outline mb-4">
+            <label for="password">AWS Secret Access Key</label>
+            <div class="sec-2">
+              <ion-icon name="lock-closed-outline"></ion-icon>
+              <input class="pas" type="text" name="aws_key" />
+            </div>
+          </div>
+          <div class="form-outline mb-4">
+            <label for="password">AWS Session Token</label>
+            <div class="sec-2">
+              <ion-icon name="lock-closed-outline"></ion-icon>
+              <input class="pas" type="text" name="aws_token" />
+            </div>
+          </div>
+          <br>
+          <button class="login ">Xác nhận</button>
+        </form>
+
+      </div>
+
+      <!-- partial -->
+  </body>
+</html>
