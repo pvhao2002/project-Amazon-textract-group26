@@ -2,13 +2,15 @@ from flask import Flask, request, render_template, send_file, request, Response
 import json
 import boto3
 import cv2
-import datetime, time
-import os, sys
+import datetime
+import time
+import os
+import sys
 import numpy as np
 from threading import Thread
 
 global capture
-capture=0
+capture = 0
 
 account_id = ""
 account_key = ""
@@ -21,6 +23,7 @@ app = Flask(__name__, template_folder='./templates')
 
 camera = cv2.VideoCapture(0)
 
+
 def client():
     global account_id
     global account_key
@@ -32,28 +35,32 @@ def client():
                           region_name='us-east-1')
     return client
 
+
 def gen_frames():
     global capture
     while True:
-        success, frame = camera.read() 
-        if success:  
-            if(capture):
-                capture=0
+        success, frame = camera.read()
+        if success:
+            if (capture):
+                capture = 0
                 now = datetime.datetime.now()
-                p = os.path.sep.join(['shots', "shot.png".format(str(now).replace(":",''))])
-                cv2.imwrite(p, frame)       
+                p = os.path.sep.join(
+                    ['shots', "shot.png".format(str(now).replace(":", ''))])
+                cv2.imwrite(p, frame)
             try:
-                ret, buffer = cv2.imencode('.jpg', cv2.flip(frame,1))
+                ret, buffer = cv2.imencode('.jpg', cv2.flip(frame, 1))
                 frame = buffer.tobytes()
                 yield (b'--frame\r\n'
                        b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
             except Exception as e:
                 pass
-                
+
         else:
             pass
 
+
 app = Flask(__name__)
+
 
 @ app.route("/", methods=["GET"])
 def main():
@@ -90,7 +97,7 @@ def extractImage():
     extractedText = ""
     for block in response['Blocks']:
         if block["BlockType"] == "LINE":
-            extractedText = extractedText+block["Text"]+" "
+            extractedText = extractedText + block["Text"]+" "
 
     responseJson = {
 
@@ -102,24 +109,28 @@ def extractImage():
     print(responseJson)
     return render_template("home.html", jsonData=json.dumps(responseJson))
 
+
 @app.route('/camera', methods=["POST"])
 def index():
     return render_template('camera.html')
+
 
 @app.route('/video_feed')
 def video_feed():
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-@app.route('/requests',methods=['POST','GET'])
+
+@app.route('/requests', methods=['POST', 'GET'])
 def tasks():
-    global switch,camera
+    global switch, camera
     if request.method == 'POST':
         if request.form.get('click') == 'Capture':
             global capture
-            capture=1     
-    elif request.method=='GET':
+            capture = 1
+    elif request.method == 'GET':
         return render_template('camera.html')
     return render_template('camera.html')
+
 
 @app.route('/download')
 def download_file():
@@ -127,6 +138,6 @@ def download_file():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=5000)
+    app.run(host='0.0.0.0', port=5000)
 
 camera.release()
