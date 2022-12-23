@@ -10,42 +10,36 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script>
+    function Export2Word(element, filename = "") {
+      var preHtml =
+        "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+      var postHtml = "</body></html>";
+      var html =
+        preHtml + document.getElementById(element).innerHTML + postHtml;
+
+      var blob = new Blob(["\ufeff", html], {
+        type: "application/msword",
+      });
+      var url =
+        "data:application/vnd.ms-word;charset=utf-8," +
+        encodeURIComponent(html);
+      filename = filename ? filename + ".doc" : "result.doc";
+      var downloadLink = document.createElement("a");
+      document.body.appendChild(downloadLink);
+      if (navigator.msSaveOrOpenBlob) {
+        navigator.msSaveOrOpenBlob(blob, filename);
+      } else {
+        downloadLink.href = url;
+        downloadLink.download = filename;
+        downloadLink.click();
+      }
+      document.body.removeChild(downloadLink);
+    }
+  </script>
 </head>
 
 <body>
-  <!-- 
-  <div class="content d-grid">
-    <div class="main justify-content-between" style="z-index: 1">
-      <div class="textlabel">
-        <h5 class="texttitle">Result:</h5>
-        <div class="text" id="text"></div>
-      </div>
-
-      <div class="main__menu justify-content-center">
-        <div class="main__menu--tool d-grid">
-          <h1 class="">Extraction raw text from images</h1>
-
-          <form method="POST" , action="/extracttext" , enctype="multipart/form-data">
-            <input type="file" , name="filename" class="filebutton" />
-            <button type="submit" class="submit-button">
-              Extract to raw text
-            </button>
-          </form>
-          <form method="POST" , action="/extracttable" , enctype="multipart/form-data"></form>
-          <div class="tool d-flex justify-content-between">
-            <button class="download-word" onclick="Export2Word('text');">
-              Download file .docx
-            </button>
-            <form method="POST" action="/camera">
-              <button class="Camera" type="submit">
-                Switch to camera mode
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
 
 
   <div class="project ">
@@ -60,15 +54,34 @@
   <div class="flex-container">
 
     <div class="flex-child magenta">
-      Flex Column 1
+      <div class="textlabel">
+        <div class="text" id="text"></div>
+      </div>
     </div>
 
     <div class="flex-child green">
-      Flex Column 2
+      <form method="POST" , action="/extracttext" , enctype="multipart/form-data">
+        <input type="file" , name="filename" class="filebutton" />
+        <button type="submit" class="submit-button">
+          Extract to raw text
+        </button>
+      </form>
+      <form method="POST" , action="/extracttable" , enctype="multipart/form-data"></form>
+      <button class="download-word" onclick="Export2Word('text');">
+        Download file .docx
+      </button>
+      <form method="POST" action="/camera">
+        <button class="Camera" type="submit">
+          Switch to camera mode
+        </button>
+      </form>
+
     </div>
-
-  </div>
-
+    <script>
+      <!-- let dataFromApi = JSON.parse({{ jsonData| tojson}}) -->
+      console.log(dataFromApi);
+      document.querySelector(".text").innerHTML = dataFromApi.text
+    </script>
 </body>
 
 </html>

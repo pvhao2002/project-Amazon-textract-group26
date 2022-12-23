@@ -38,3 +38,22 @@ ul.item {
 .flex-child:first-child {
     margin-right: 20px;
 }
+
+
+button {
+    width: 200px;
+    height: 50px;
+    padding: 12px;
+}
+
+.filebutton {
+    margin: 10px;
+}
+
+.Camera {
+    margin: 10px;
+}
+
+.download-word {
+    margin: 10px;
+}
