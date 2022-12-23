@@ -7,17 +7,9 @@
     <title>Trang-chu</title>
     <link
       rel="stylesheet"
-      href="{{ url_for('static',filename='./bootstrap.5.css') }}"
+      type="text/css"
+      href="{{ url_for('static',filename='styles/index.css') }}"
     />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static',filename='./index.css') }}"
-    />
-
-
-    <link rel="stylesheet" href="/static/bootstrap.5.css" />
-    <link rel="stylesheet" href="/static/index.css" />
-
     <script>
       function Export2Word(element, filename = "") {
         var preHtml =
@@ -53,6 +45,7 @@
           <!-- <h5 class="texttitle">Result:</h5> -->
           <div class="text" id="text"></div>
         </div>
+
         <div class="main__menu justify-content-center">
           <div class="main__menu--tool d-grid">
             <h1 class="">Extraction raw text from images</h1>
@@ -63,10 +56,11 @@
               action="/extracttext"
               ,
               enctype="multipart/form-data"
-
             >
               <input type="file" , name="filename" class="filebutton" />
-              <button type="submit" class="submit-button">Extract to raw text</button>
+              <button type="submit" class="submit-button">
+                Extract to raw text
+              </button>
             </form>
             <form
               method="POST"
@@ -74,15 +68,16 @@
               action="/extracttable"
               ,
               enctype="multipart/form-data"
-            >
-            </form>
+            ></form>
             <div class="tool d-flex justify-content-between">
               <button class="download-word" onclick="Export2Word('text');">
                 Download file .docx
               </button>
               <form method="POST" action="/camera">
-                <button class="Camera" type="submit">Switch to camera mode</button>
-            </form>
+                <button class="Camera" type="submit">
+                  Switch to camera mode
+                </button>
+              </form>
             </div>
           </div>
         </div>

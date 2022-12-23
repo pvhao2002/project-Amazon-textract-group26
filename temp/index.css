@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.project {
+    color: #000000;
+    text-align: center;
+}
+
+.project .title {
+    font-size: 42px;
+    background-color: aquamarine;
+    border: 3px solid green;
+}
+
+.item {
+    margin: auto;
+    width: 20%;
+    padding: 10px;
+}
+
+ul.item {
+    text-align: left;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+    border: 2px solid black;
+    height: 75vh;
+}
+
+.flex-child:first-child {
+    margin-right: 20px;
+}

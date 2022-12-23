@@ -1,97 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Login AWS</title>
 
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
-    />
-    
-    {% comment %} <link rel="stylesheet" href="/css/home.css" />
-      <link
-      rel="stylesheet"
-      href="{{ url_for('static',filename='/css/home.css') }}"
-    /> {% endcomment %}
-  </head>
-  <body class="gradient-custom-2 ">
-    <!-- partial:index.partial.html -->
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trang-chu</title>
+  <link rel="stylesheet" type="text/css" href="index.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
 
-      <div class="screen-1">
-
-          <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-              <div class="col-xl-10">
-                <div class="card rounded-3 text-black">
-                  <div class="row g-0">
-                    <div class="col-lg-6 d-flex align-items-center ">
-                      <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                        <h4 class="mb-4">
-                          <div class="font-size-1">
-                           Đồ án cuối kỳ môn Điện toán đám mây
-                          </div>
-                        </h4>
-                        <p class="small mb-0 ">
-                          <div class="font-size-2">
-                            - Đề tài: Tìm hiểu Amazon Textract và viết ứng dụng minh họa <br>
-                          </div>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-        <form
-          method="POST"
-          ,
-          action="/login"
-          ,
-          enctype="multipart/form-data"
-        >
-          <div class="form-outline mb-4">
-            <label for="text">AWS Access Key ID</label>
-            <div class="sec-2">
-              <ion-icon name="lock-closed-outline"></ion-icon>
-              <input type="text" name="aws_id" />
-            </div>
-          </div>
-          <div class="form-outline mb-4">
-            <label for="password">AWS Secret Access Key</label>
-            <div class="sec-2">
-              <ion-icon name="lock-closed-outline"></ion-icon>
-              <input class="pas" type="text" name="aws_key" />
-            </div>
-          </div>
-          <div class="form-outline mb-4">
-            <label for="password">AWS Session Token</label>
-            <div class="sec-2">
-              <ion-icon name="lock-closed-outline"></ion-icon>
-              <input class="pas" type="text" name="aws_token" />
-            </div>
-          </div>
-          <br>
-          <button class="login ">Xác nhận</button>
-        </form>
-
+<body>
+  <!-- 
+  <div class="content d-grid">
+    <div class="main justify-content-between" style="z-index: 1">
+      <div class="textlabel">
+        <h5 class="texttitle">Result:</h5>
+        <div class="text" id="text"></div>
       </div>
 
-      <!-- partial -->
-  </body>
+      <div class="main__menu justify-content-center">
+        <div class="main__menu--tool d-grid">
+          <h1 class="">Extraction raw text from images</h1>
+
+          <form method="POST" , action="/extracttext" , enctype="multipart/form-data">
+            <input type="file" , name="filename" class="filebutton" />
+            <button type="submit" class="submit-button">
+              Extract to raw text
+            </button>
+          </form>
+          <form method="POST" , action="/extracttable" , enctype="multipart/form-data"></form>
+          <div class="tool d-flex justify-content-between">
+            <button class="download-word" onclick="Export2Word('text');">
+              Download file .docx
+            </button>
+            <form method="POST" action="/camera">
+              <button class="Camera" type="submit">
+                Switch to camera mode
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+  <div class="project ">
+    <h1 class="project title">GROUP 26: AMAZON TEXTRACT</h1>
+    <span>Group member:</span>
+    <ul class="item">
+      <li>20110470 - Pham Van Hao</li>
+      <li>20110... - Nguyen Tien Dung</li>
+      <li>20110... - Phan Chi Bao</li>
+    </ul>
+  </div>
+  <div class="flex-container">
+
+    <div class="flex-child magenta">
+      Flex Column 1
+    </div>
+
+    <div class="flex-child green">
+      Flex Column 2
+    </div>
+
+  </div>
+
+</body>
+
 </html>
